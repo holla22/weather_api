@@ -3,8 +3,7 @@ from dotenv import load_dotenv
 import os
 import sys
 
-#API_KEY = 'GDs6YondZ1GmEdc1DZ6s8P4ny5wAW6qg'
-API_KEY = os.environ.get("API_KEY_2")
+API_KEY = os.environ.get("API_KEY")
 
 
 class Weather:
