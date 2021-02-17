@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/node_modules/chart.js/dist/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="/static/node_modules/Chart.min.css">
+    <title>Bar Chart</title>
+</head>
+<body>
+
+    
+
+    
+
+       
+   
+
+    <canvas id="myChart" width="300" height="300"></canvas>
+    {% block javascript %}
+    <script>
+        temps = '{{ temps }}'.replace("[","").replace("]","");
+
+        var t = temps.split(',');
+
+
+        console.log( t);
+        const propertyNames = Object.values(t);
+
+console.log(propertyNames);
+
+        var ctx = document.getElementById('myChart');
+        
+        var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: propertyNames,
+        datasets: [{
+            label: 'Degrees in celcius',
+            data: propertyNames,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+    </script>
+    {% endblock %}
+</body>
+</html>
