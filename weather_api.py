@@ -11,8 +11,6 @@ class Weather:
 		self.city = city
 
 	def get_city_key(self):
-		""" print("http://dataservice.accuweather.com/locations/v1/cities/search?apikey="+ API_KEY +"&q=" + self.city)
-		sys.exit(0) """
 
 		url = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=" + API_KEY + "&q=" + self.city
 
@@ -30,9 +28,8 @@ class Weather:
 
 
 	def get_one_day_forcast(self,city_key):
-		#curl -X GET "http://dataservice.accuweather.com/forecasts/v1/daily/1day/301285?apikey=GDs6YondZ1GmEdc1DZ6s8P4ny5wAW6qg&metric=true"
 
-		url = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+ city_key +"?apikey=GDs6YondZ1GmEdc1DZ6s8P4ny5wAW6qg&metric=true"
+		url = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+ city_key +"?apikey=" + API_KEY + "&metric=true"
 
 		payload={}
 		headers = {}
@@ -54,7 +51,7 @@ class Weather:
 
 
 	def get_five_day_forcast(self,city_key):
-		url = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/"+ city_key +"?apikey=GDs6YondZ1GmEdc1DZ6s8P4ny5wAW6qg&metric=true"
+		url = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/"+ city_key +"?apikey=" + API_KEY + "&metric=true"
 
 		payload={}
 		headers = {}
