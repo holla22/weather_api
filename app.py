@@ -3,8 +3,6 @@ from flask import Flask, request, json, render_template
 app = Flask(__name__)
 
 
-# API KEY: GDs6YondZ1GmEdc1DZ6s8P4ny5wAW6qg
-# Accuweather
 
 @app.route('/')
 def main_route():
