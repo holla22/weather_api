@@ -2,7 +2,7 @@
 
 ## About this project
 
-This was written in flask, it's a simple API wrapper project. 
+This was written in flask, it's a simple API wrapper project. PS: remember to pip install the requirements.txt file.
 
 The main code for the wrapper I have written in a Class inside weather_api.py all avg, max, min, mean, and median calculations is done on the 5 day forcast section only.
 
