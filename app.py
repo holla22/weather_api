@@ -1,34 +1,40 @@
 from weather_api import Weather
+import dateutil.parser
+import hashlib 
+import os
+import sys
 from flask import Flask, request, json, render_template
+
 app = Flask(__name__)
-
-
 
 @app.route('/')
 def main_route():
-
-    w = Weather('brackenfell')
-
-    the_key = w.get_city_key()
     return 'Weather API'
 
 @app.route('/forecasts/v1/daily/1day/', methods=['GET'])
 def get_1_day_forcast():
 
     if request.method == 'GET':
-        city = request.args.get('city', '')
+        # check authentication
+        user_key = request.args.get('key', '')
+        auth = simple_authentication(user_key)
+        
+        if auth == 1:
+            city = request.args.get('city', '')
 
-        w = Weather(city)
+            w = Weather(city)
 
-        the_key = w.get_city_key()
+            the_key = w.get_city_key()
 
-        response = app.response_class(
-            response=w.get_one_day_forcast(the_key),
-            status=200,
-            mimetype='application/json'
-        )
+            response = app.response_class(
+                response=w.get_one_day_forcast(the_key),
+                status=200,
+                mimetype='application/json'
+            )
 
-        return response
+            return response
+
+    return "nothing here"
 
     
 
@@ -37,19 +43,28 @@ def get_5_day_forcast():
 
 
     if request.method == 'GET':
-        city = request.args.get('city', '')
 
-        w = Weather(city)
+        # check authentication
+        user_key = request.args.get('key', '')
+        auth = simple_authentication(user_key)
+        
+        if auth == 1:
 
-        the_key = w.get_city_key()
+            city = request.args.get('city', '')
 
-        response = app.response_class(
-            response=w.get_five_day_forcast(the_key),
-            status=200,
-            mimetype='application/json'
-        )
+            w = Weather(city)
 
-        return response
+            the_key = w.get_city_key()
+
+            response = app.response_class(
+                response=w.get_five_day_forcast(the_key),
+                status=200,
+                mimetype='application/json'
+            )
+
+            return response
+
+    return "nothing here"
 
 
 
@@ -64,10 +79,13 @@ def get_5_day_forcast_barchart():
         the_key = w.get_city_key()
 
         response = w.get_five_day_forcast(the_key)
+        
+        resp = json.loads(response)
 
         dates = []
         temps = []
-        for d in response['Forcasts']:
+        for d in resp['Forcasts']:
+
             dates.append(d['Date'])
             temps.append(d['Max'])
 
@@ -76,6 +94,22 @@ def get_5_day_forcast_barchart():
         return render_template('barchart.html', dates=dates, temps=temps)
         
 
-    return "hello"
+    return "nothing here"
 
 
+def simple_authentication(user_key):
+
+    USER_API_KEY = os.environ.get("USER_API_KEY")
+    SALT = os.environ.get("SALT")
+
+    encoded_key = USER_API_KEY + SALT
+
+    result = hashlib.md5(encoded_key.encode()) 
+
+   
+    encryption = result.hexdigest()
+
+    if encryption  == user_key:
+        return 1
+
+    return 0

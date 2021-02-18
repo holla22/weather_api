@@ -9,33 +9,29 @@
     <title>Bar Chart</title>
 </head>
 <body>
-
-    
-
-    
-
-       
    
 
     <canvas id="myChart" width="300" height="300"></canvas>
     {% block javascript %}
     <script>
         temps = '{{ temps }}'.replace("[","").replace("]","");
+        dates = '{{ dates }}'.replace("[","").replace("]","");
 
         var t = temps.split(',');
+        var d = dates.split(',');
 
 
         console.log( t);
         const propertyNames = Object.values(t);
+        const dateLabels = Object.values(d);
 
-console.log(propertyNames);
 
         var ctx = document.getElementById('myChart');
         
         var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: propertyNames,
+        labels: dateLabels,
         datasets: [{
             label: 'Degrees in celcius',
             data: propertyNames,

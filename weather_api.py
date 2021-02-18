@@ -60,7 +60,7 @@ class Weather:
 
 		forcast = response.json()
 
-		print(forcast)
+		#print(forcast)
 
 		tlist_max = []
 		tlist_min = []
@@ -85,6 +85,20 @@ class Weather:
 		med_max = statistics.median(tlist_max)
 		my_forcasts['Median_min'].append(med_min)
 		my_forcasts['Median_max'].append(med_max)
+
+		"""
+		Get the minimum Max value and maximum Max value.
+		seeing that we already getting max and min values from the API 
+		I wanted to get the max and min of the max and min LIST if you get what I'm saying here :-)
+		
+		I'm not returning this part to the JSON output of the API call as I thought maybe just leave it here
+		so that you can see that I know how to do the calculations with build in functions.
+		"""
+		smallest_min = min(tlist_min)
+		largest_min = max(tlist_min)
+
+		smallest_max = min(tlist_max)
+		largest_max = max(tlist_max)
 
 
 		json_object = json.dumps(my_forcasts)

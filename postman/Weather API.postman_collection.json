@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "6cb84a73-8ff2-48ed-bbb8-3f0b58258a78",
+		"name": "Weather API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 day weather data - custom",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/forecasts/v1/daily/1day/?key=d2e78bbf822ca098393d50423eae7f6a&city=brackenfell",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"forecasts",
+						"v1",
+						"daily",
+						"1day",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "d2e78bbf822ca098393d50423eae7f6a"
+						},
+						{
+							"key": "city",
+							"value": "brackenfell"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 day weather data - custom",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/forecasts/v1/daily/5day/?key=d2e78bbf822ca098393d50423eae7f6a&city=brackenfell",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"forecasts",
+						"v1",
+						"daily",
+						"5day",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "d2e78bbf822ca098393d50423eae7f6a"
+						},
+						{
+							"key": "city",
+							"value": "brackenfell"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
