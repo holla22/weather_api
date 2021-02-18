@@ -14,7 +14,7 @@ The main code for the wrapper I have written in a Class inside weather_api.py al
 
 - first create a .env file for your API keys and secret stuff in the same repository folder 
 
-> add the following sections to the .env file, replace {Accuweather API KEY HERE} with your own accuweather API key
+> add the following sections to the .env file, replace {Accuweather API KEY HERE} with your own accuweather API key. 
 > These are just temp keys and for demonstration purpose only.
 
 - API_KEY={Accuweather API KEY HERE}
